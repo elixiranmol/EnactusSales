@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dev Nagri — Handcrafted Heritage from Uttarakhand</title>
+  <meta name="description" content="Dev Nagri connects master artisans from Uttarakhand's mountain villages with people who value handcrafted heritage. Every product has a story. An Enactus IIT Roorkee initiative.">
+  <meta name="theme-color" content="#F5F0E8">
+
+  <!-- Three.js Library -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
+  
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <canvas id="shader-gradient-bg" aria-hidden="true"></canvas>
+
+
+  <!-- ═══════════════════════════════════════════════════
+       NAVIGATION
+       ═══════════════════════════════════════════════════ -->
+  <nav class="nav" id="main-nav" aria-label="Main navigation">
+    <a href="/" class="nav__logo" id="nav-logo">Dev Nagri</a>
+
+    <ul class="nav__links" id="nav-links">
+      <li><a href="#collections" class="nav__link" id="nav-collections">Collections</a></li>
+      <li><a href="#artisan-story" class="nav__link" id="nav-artisans">Artisans</a></li>
+      <li><a href="#journey" class="nav__link" id="nav-journey">Our Journey</a></li>
+      <li><a href="#journal" class="nav__link" id="nav-journal">Journal</a></li>
+    </ul>
+
+    <div class="nav__actions">
+      <!-- Search icon -->
+      <button class="nav__icon" id="nav-search" aria-label="Search">
+        <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><line x1="16.5" y1="16.5" x2="21" y2="21"/></svg>
+      </button>
+      <!-- Cart icon -->
+      <button class="nav__icon" id="nav-cart" aria-label="Cart">
+        <svg viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+      </button>
+      <!-- Hamburger (mobile) -->
+      <button class="nav__hamburger" id="nav-hamburger" aria-label="Open menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Mobile menu overlay -->
+  <div class="mobile-menu" id="mobile-menu" role="dialog" aria-label="Mobile navigation">
+    <button class="mobile-menu__close" id="mobile-menu-close" aria-label="Close menu">
+      <svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
+    <a href="#collections" class="mobile-menu__link">Collections</a>
+    <a href="#artisan-story" class="mobile-menu__link">Artisans</a>
+    <a href="#journey" class="mobile-menu__link">Our Journey</a>
+    <a href="#journal" class="mobile-menu__link">Journal</a>
+  </div>
+
+
+
+      <!-- ═══════════════════════════════════════════════════
+           SECTION 1 — HERO
+           ═══════════════════════════════════════════════════ -->
+      <section class="hero" id="hero">
+    <div class="hero__image">
+      <img src="assets/hero.webp" alt="Golden light over the Himalayan mountain landscape of Uttarakhand">
+    </div>
+    <div class="hero__overlay"></div>
+    <div class="hero__pattern" aria-hidden="true"></div>
+
+    <div class="hero__content">
+      <p class="hero__label label">Uttarakhand · Handcrafted Heritage</p>
+      <h1 class="hero__headline">Every Product<br>Has A Story.</h1>
+      <p class="hero__sub">Handcrafted by artisan communities across the Himalayas.<br>Traceable. Authentic. Yours.</p>
+      <div class="hero__ctas">
+        <a href="#collections" class="cta cta--primary" id="hero-cta-explore">Explore Collection</a>
+        <a href="#artisan-story" class="cta cta--ghost" id="hero-cta-artisans">Meet The Artisans</a>
+      </div>
+    </div>
+
+    <div class="hero__scroll" aria-hidden="true">
+      <div class="hero__scroll-line"></div>
+      <div class="hero__scroll-chevron">
+        <svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════════════
+       SECTION 2 — MISSION INTERRUPT
+       ═══════════════════════════════════════════════════ -->
+  <section class="mission" id="mission">
+    <div class="mission__inner reveal glass-panel">
+      <p class="mission__label label">A Different Kind of Store</p>
+      <h2 class="mission__heading display">We exist because<br>endangered crafts deserve<br>a future.</h2>
+      <p class="mission__body">Dev Nagri connects master artisans from Uttarakhand's villages directly with people who understand the value of what's made by hand. No middlemen. No shortcuts. Every rupee earned travels to the source.</p>
+    </div>
+    <div class="mission__divider reveal" aria-hidden="true">
+      <div class="mission__divider-line"></div>
+      <div class="mission__divider-motif">
+        <!-- Aipan geometric motif -->
+        <svg viewBox="0 0 24 24"><path d="M12 2L22 12L12 22L2 12Z"/><path d="M12 7L17 12L12 17L7 12Z"/><circle cx="12" cy="12" r="1.5"/></svg>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════════════
+       SECTION 3 — COLLECTIONS
+       ═══════════════════════════════════════════════════ -->
+  <section class="collections" id="collections">
+    <div class="container">
+
+      <!-- Two-column heading -->
+      <div class="collections__header reveal glass-panel">
+        <h2 class="collections__header-title display">Crafted by<br>tradition.</h2>
+        <p class="collections__header-desc">Five heritage craft traditions.<br>Each with centuries of story.</p>
+      </div>
+
+      <!-- Asymmetric grid: large left, 2 stacked right -->
+      <div class="collections__grid reveal-stagger">
+
+        <!-- Large anchor tile (left) -->
+        <div class="collections__anchor">
+          <div class="collection-tile reveal" id="tile-copper">
+            <img class="collection-tile__image" src="assets/collection-copper.webp" alt="Traditional copper vessels hand-hammered by Tamta artisans in Almora">
+            <div class="collection-tile__overlay">
+              <p class="collection-tile__label">Copper Craft · Almora</p>
+              <h3 class="collection-tile__title">Tamta — The Beaten Metal</h3>
+              <p class="collection-tile__caption">Hand-hammered vessels from Almora's coppersmiths.</p>
+              <p class="collection-tile__meta">Est. tradition: 400+ years</p>
+              <a href="#" class="collection-tile__link">Explore →</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Stacked tiles (right) -->
+        <div class="collections__stack">
+          <div class="collection-tile reveal" id="tile-wool">
+            <img class="collection-tile__image" src="assets/collection-wool.webp" alt="Himalayan Pashmina wool being handwoven on a traditional loom in Chamoli">
+            <div class="collection-tile__overlay">
+              <p class="collection-tile__label">Himalayan Wool · Chamoli</p>
+              <h3 class="collection-tile__title">Pashmina — The Mountain Weave</h3>
+              <p class="collection-tile__caption">Handwoven warmth from Chamoli's mountain weavers.</p>
+              <p class="collection-tile__meta">Est. tradition: 300+ years</p>
+              <a href="#" class="collection-tile__link">Explore →</a>
+            </div>
+          </div>
+          <div class="collection-tile reveal" id="tile-bamboo">
+            <img class="collection-tile__image" src="assets/collection-bamboo.webp" alt="Intricately woven Ringaal bamboo baskets from Pauri Garhwal">
+            <div class="collection-tile__overlay">
+              <p class="collection-tile__label">Bamboo Ringaal · Pauri Garhwal</p>
+              <h3 class="collection-tile__title">Ringaal — The Living Weave</h3>
+              <p class="collection-tile__caption">Bamboo craft passed down through generations.</p>
+              <p class="collection-tile__meta">Est. tradition: 500+ years</p>
+              <a href="#" class="collection-tile__link">Explore →</a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Horizontal scroll for remaining collections -->
+      <div class="collections__scroll reveal-stagger">
+        <div class="collection-tile reveal" id="tile-wood">
+          <img class="collection-tile__image" src="assets/collection-wood.webp" alt="Intricate Likhai wood carvings from Tehri Garhwal">
+          <div class="collection-tile__overlay">
+            <p class="collection-tile__label">Likhai Wood Carving · Tehri</p>
+            <h3 class="collection-tile__title">Likhai — The Carved Grain</h3>
+            <p class="collection-tile__caption">Traditional wood carving from Tehri's mountain forests.</p>
+            <p class="collection-tile__meta">Est. tradition: 350+ years</p>
+            <a href="#" class="collection-tile__link">Explore →</a>
+          </div>
+        </div>
+        <div class="collection-tile reveal" id="tile-textile">
+          <img class="collection-tile__image" src="assets/collection-textile.webp" alt="Kumaoni and Garhwali textile heritage from Pithoragarh">
+          <div class="collection-tile__overlay">
+            <p class="collection-tile__label">Textile Heritage · Pithoragarh</p>
+            <h3 class="collection-tile__title">The Thread Legacy</h3>
+            <p class="collection-tile__caption">Natural-dyed textiles woven on ancient looms.</p>
+            <p class="collection-tile__meta">Est. tradition: 600+ years</p>
+            <a href="#" class="collection-tile__link">Explore →</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════════════
+       SECTION 4 — ARTISAN STORY
+       ═══════════════════════════════════════════════════ -->
+  <section class="artisan-story" id="artisan-story" data-dark-section>
+
+    <div class="artisan-story__portrait">
+      <img src="assets/artisan-kamla.webp" alt="Kamla Devi, Aipan artist from Almora, painting intricate geometric patterns" id="artisan-main-image">
+    </div>
+
+    <div class="artisan-story__panel-wrapper">
+      <div class="artisan-story__panel reveal">
+        <p class="artisan-story__panel-label label">Artisan Profile</p>
+        <h2 class="artisan-story__name" id="artisan-name">Kamla Devi</h2>
+        <p class="artisan-story__location" id="artisan-location">Almora District · Uttarakhand</p>
+
+        <p class="artisan-story__craft-label" style="margin-top: 16px;">Craft Tradition</p>
+        <p class="artisan-story__craft-name" id="artisan-craft">Aipan — Kumaoni Ritual Floor Art</p>
+
+        <blockquote class="artisan-story__quote" id="artisan-quote">"My grandmother painted these patterns before every festival. Now I paint them on objects that travel to homes I'll never see."</blockquote>
+
+        <div class="artisan-story__divider"></div>
+
+        <div class="artisan-story__meta-row">
+          <div class="artisan-story__meta-item">
+            <p class="artisan-story__meta-label">Village</p>
+            <p class="artisan-story__meta-value" id="artisan-village">Syalde, Almora</p>
+          </div>
+          <div class="artisan-story__meta-item">
+            <p class="artisan-story__meta-label">Active since</p>
+            <p class="artisan-story__meta-value" id="artisan-since">1987</p>
+          </div>
+        </div>
+
+        <div class="artisan-story__divider"></div>
+
+        <a href="#" class="cta-link artisan-story__cta" id="artisan-cta">Read Kamla's Story →</a>
+      </div>
+    </div>
+
+    <!-- Artisan thumbnails -->
+    <div class="artisan-story__thumbnails" id="artisan-thumbnails">
+      <button class="artisan-thumb active" id="thumb-1" data-artisan="0" aria-label="View Kamla Devi's profile">
+        <img src="assets/artisan-thumbnail-1.webp" alt="Kamla Devi">
+      </button>
+      <button class="artisan-thumb" id="thumb-2" data-artisan="1" aria-label="View Mohan Singh's profile">
+        <img src="assets/artisan-thumbnail-2.webp" alt="Mohan Singh">
+      </button>
+      <button class="artisan-thumb" id="thumb-3" data-artisan="2" aria-label="View Geeta Rawat's profile">
+        <img src="assets/artisan-thumbnail-3.webp" alt="Geeta Rawat">
+      </button>
+      <button class="artisan-thumb" id="thumb-4" data-artisan="3" aria-label="View Rajesh Bisht's profile">
+        <img src="assets/artisan-thumbnail-4.webp" alt="Rajesh Bisht">
+      </button>
+    </div>
+
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════════════
+       SECTION 5 — BEYOND THE PRODUCT
+       ═══════════════════════════════════════════════════ -->
+  <section class="beyond" id="beyond">
+    <div class="container">
+
+      <div class="beyond__header reveal glass-panel">
+        <h2 class="beyond__heading display">You're not just<br>buying an object.</h2>
+        <p class="beyond__desc">Every Dev Nagri product comes with four things no other store offers.</p>
+      </div>
+
+      <div class="beyond__grid reveal-stagger">
+
+        <!-- Tile 1 — Artisan Identity -->
+        <div class="beyond-tile reveal glass-panel" style="transition-delay: 100ms">
+          <div class="beyond-tile__icon">
+            <!-- Person / face icon -->
+            <svg viewBox="0 0 40 40"><circle cx="20" cy="14" r="7"/><path d="M6 36c0-8 6-14 14-14s14 6 14 14"/></svg>
+          </div>
+          <h3 class="beyond-tile__title">Artisan Identity</h3>
+          <p class="beyond-tile__body">Every product links to a named artisan, their village, craft lineage, and their own story.</p>
+        </div>
+
+        <!-- Tile 2 — Craft Certificate -->
+        <div class="beyond-tile reveal" id="beyond-certificate">
+          <div class="beyond-tile__icon">
+            <!-- Certificate icon -->
+            <svg viewBox="0 0 40 40"><rect x="6" y="4" width="28" height="24" rx="2"/><line x1="12" y1="12" x2="28" y2="12"/><line x1="12" y1="17" x2="24" y2="17"/><circle cx="20" cy="33" r="5"/><line x1="17" y1="37" x2="20" y2="33"/><line x1="23" y1="37" x2="20" y2="33"/></svg>
+          </div>
+          <h3 class="beyond-tile__title">Craft Certificate</h3>
+          <p class="beyond-tile__body">Quality-verified at source. Each piece earns a documentation stamp before it leaves the hills.</p>
+        </div>
+
+        <!-- Tile 3 — Origin Map -->
+        <div class="beyond-tile reveal" id="beyond-origin">
+          <div class="beyond-tile__icon">
+            <!-- Map pin icon -->
+            <svg viewBox="0 0 40 40"><path d="M20 4c-7 0-12 5-12 12 0 9 12 20 12 20s12-11 12-20c0-7-5-12-12-12z"/><circle cx="20" cy="16" r="4"/></svg>
+          </div>
+          <h3 class="beyond-tile__title">Origin Map</h3>
+          <p class="beyond-tile__body">The exact Uttarakhand village your product came from, mapped and named.</p>
+        </div>
+
+        <!-- Tile 4 — Impact Receipt -->
+        <div class="beyond-tile reveal" id="beyond-impact">
+          <div class="beyond-tile__icon">
+            <!-- Coin / rupee icon -->
+            <svg viewBox="0 0 40 40"><circle cx="20" cy="20" r="14"/><text x="20" y="26" text-anchor="middle" font-family="DM Sans" font-size="16" font-weight="300" fill="none" stroke="currentColor" stroke-width="1.2">₹</text></svg>
+          </div>
+          <h3 class="beyond-tile__title">Impact Receipt</h3>
+          <p class="beyond-tile__body">See how much of your payment reached the artisan directly. Transparency, down to the rupee.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════════════
+       SECTION 6 — FEATURED PRODUCTS
+       ═══════════════════════════════════════════════════ -->
+  <section class="products" id="products">
+    <div class="container">
+
+      <div class="products__header reveal glass-panel">
+        <p class="products__label label">From the Collection</p>
+        <h2 class="products__heading display">Three objects.<br>Three stories.</h2>
+      </div>
+
+      <div class="products__grid reveal-stagger">
+
+        <!-- Product 1 — Copper Vessel -->
+        <article class="product-card reveal glass-panel" style="transition-delay: 100ms">
+          <div class="product-card__image-wrap">
+            <img src="assets/product-vessel.webp" alt="Hand-hammered copper water vessel from Almora, Uttarakhand">
+          </div>
+          <p class="product-card__category">Copper Craft · Almora</p>
+          <h3 class="product-card__title">Hand-Hammered Water Vessel</h3>
+          <div class="product-card__separator"></div>
+          <div class="product-card__meta">
+            <span class="product-card__meta-label">By</span>
+            <span class="product-card__meta-value">Kamla Devi, Artisan</span>
+            <span class="product-card__meta-label">Material</span>
+            <span class="product-card__meta-value">Pure Copper, Grade A</span>
+            <span class="product-card__meta-label">Made in</span>
+            <span class="product-card__meta-value">Almora, Uttarakhand</span>
+            <span class="product-card__meta-label">Year</span>
+            <span class="product-card__meta-value">2024</span>
+          </div>
+          <div class="product-card__separator"></div>
+          <p class="product-card__price">₹ 2,400</p>
+          <a href="#" class="cta-link product-card__cta" id="product-cta-vessel">Reserve This Piece →</a>
+        </article>
+
+        <!-- Product 2 — Pashmina Wrap -->
+        <div class="product-card reveal" id="product-pashmina">
+          <div class="product-card__image-wrap">
+            <img src="assets/product-pashmina.webp" alt="Handwoven Pashmina wrap from Chamoli, Uttarakhand">
+          </div>
+          <p class="product-card__category">Himalayan Wool · Chamoli</p>
+          <h3 class="product-card__title">Pashmina Handwoven Wrap</h3>
+          <div class="product-card__separator"></div>
+          <div class="product-card__meta">
+            <span class="product-card__meta-label">By</span>
+            <span class="product-card__meta-value">Geeta Rawat, Weaver</span>
+            <span class="product-card__meta-label">Material</span>
+            <span class="product-card__meta-value">Pure Pashmina Wool</span>
+            <span class="product-card__meta-label">Made in</span>
+            <span class="product-card__meta-value">Chamoli, Uttarakhand</span>
+            <span class="product-card__meta-label">Year</span>
+            <span class="product-card__meta-value">2024</span>
+          </div>
+          <div class="product-card__separator"></div>
+          <p class="product-card__price">₹ 4,800</p>
+          <a href="#" class="cta-link product-card__cta" id="product-cta-pashmina">Reserve This Piece →</a>
+        </div>
+
+        <!-- Product 3 — Bamboo Basket -->
+        <div class="product-card reveal" id="product-basket">
+          <div class="product-card__image-wrap">
+            <img src="assets/product-basket.webp" alt="Ringaal bamboo storage basket from Pauri Garhwal, Uttarakhand">
+          </div>
+          <p class="product-card__category">Bamboo Craft · Pauri</p>
+          <h3 class="product-card__title">Ringaal Bamboo Storage Basket</h3>
+          <div class="product-card__separator"></div>
+          <div class="product-card__meta">
+            <span class="product-card__meta-label">By</span>
+            <span class="product-card__meta-value">Rajesh Bisht, Craftsman</span>
+            <span class="product-card__meta-label">Material</span>
+            <span class="product-card__meta-value">Ringaal Bamboo</span>
+            <span class="product-card__meta-label">Made in</span>
+            <span class="product-card__meta-value">Pauri Garhwal, Uttarakhand</span>
+            <span class="product-card__meta-label">Year</span>
+            <span class="product-card__meta-value">2024</span>
+          </div>
+          <div class="product-card__separator"></div>
+          <p class="product-card__price">₹ 1,200</p>
+          <a href="#" class="cta-link product-card__cta" id="product-cta-basket">Reserve This Piece →</a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════════════
+       SECTION 7 — THE JOURNEY (SUPPLY CHAIN)
+       ═══════════════════════════════════════════════════ -->
+  <section class="journey" id="journey" data-dark-section>
+    <div class="container">
+
+      <div class="journey__header reveal glass-panel">
+        <h2 class="journey__heading display">From their hands<br>to your home.</h2>
+        <p class="journey__desc">Every product travels a 9-step verified journey. Nothing hidden. Nothing shortcut.</p>
+      </div>
+
+      <div class="journey__timeline reveal-stagger glass-panel">
+
+        <!-- Node 1 -->
+        <div class="journey-node reveal" id="journey-node-1">
+          <div class="journey-node__circle">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4.4 3.6-8 8-8s8 3.6 8 8"/><circle cx="6" cy="10" r="2.5"/><path d="M1 18c0-2.8 2.2-5 5-5"/><circle cx="18" cy="10" r="2.5"/><path d="M23 18c0-2.8-2.2-5-5-5"/></svg>
+          </div>
+          <p class="journey-node__step">01</p>
+          <p class="journey-node__title">Artisan Community</p>
+          <p class="journey-node__caption">Uttarakhand villages</p>
+          <div class="journey-node__detail">
+            <div class="journey-node__detail-inner">
+              <p class="journey-node__detail-text">240+ artisans across 6 districts craft products in their homes and workshops.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Node 2 -->
+        <div class="journey-node reveal" id="journey-node-2">
+          <div class="journey-node__circle">
+            <svg viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 00-1-1.73L13 2.27a2 2 0 00-2 0L4 6.27A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>
+          </div>
+          <p class="journey-node__step">02</p>
+          <p class="journey-node__title">Village Collection</p>
+          <p class="journey-node__caption">Products gathered locally</p>
+          <div class="journey-node__detail">
+            <div class="journey-node__detail-inner">
+              <p class="journey-node__detail-text">Local collection points in each village gather finished products weekly.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Node 3 -->
+        <div class="journey-node reveal" id="journey-node-3">
+          <div class="journey-node__circle">
+            <svg viewBox="0 0 24 24"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg>
+          </div>
+          <p class="journey-node__step">03</p>
+          <p class="journey-node__title">Quality Check</p>
+          <p class="journey-node__caption">Inspection + story recorded</p>
+          <div class="journey-node__detail">
+            <div class="journey-node__detail-inner">
+              <p class="journey-node__detail-text">Every piece inspected for quality. The artisan's story and craft process documented.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Node 4 -->
+        <div class="journey-node reveal" id="journey-node-4">
+          <div class="journey-node__circle">
+            <svg viewBox="0 0 24 24"><path d="M20.59 13.41l-7.17 7.17a2 2 0 01-2.83 0L2 12V2h10l8.59 8.59a2 2 0 010 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg>
+          </div>
+          <p class="journey-node__step">04</p>
+          <p class="journey-node__title">Branding &amp; Eco-Pack</p>
+          <p class="journey-node__caption">'Every Product Has a Story' tag</p>
+          <div class="journey-node__detail">
+            <div class="journey-node__detail-inner">
+              <p class="journey-node__detail-text">Eco-friendly packaging with artisan story card, origin tag, and craft certificate.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Node 5 -->
+        <div class="journey-node reveal" id="journey-node-5">
+          <div class="journey-node__circle">
+            <svg viewBox="0 0 24 24"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 3 20 16 16 16"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+          </div>
+          <p class="journey-node__step">05</p>
+          <p class="journey-node__title">Transportation</p>
+          <p class="journey-node__caption">Villages → Roorkee</p>
+          <div class="journey-node__detail">
+            <div class="journey-node__detail-inner">
+              <p class="journey-node__detail-text">Products carefully transported from mountain villages to the Roorkee hub.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Node 6 -->
+        <div class="journey-node reveal" id="journey-node-6">
+          <div class="journey-node__circle">
+            <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+          </div>
+          <p class="journey-node__step">06</p>
+          <p class="journey-node__title">Roorkee Hub</p>
+          <p class="journey-node__caption">Central fulfillment</p>
+          <div class="journey-node__detail">
+            <div class="journey-node__detail-inner">
+              <p class="journey-node__detail-text">Central coordination hub in Roorkee — inventory, quality control, and order fulfillment.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Node 7 -->
+        <div class="journey-node reveal" id="journey-node-7">
+          <div class="journey-node__circle">
+            <svg viewBox="0 0 24 24"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 002 1.61h9.72a2 2 0 002-1.61L23 6H6"/></svg>
+          </div>
+          <p class="journey-node__step">07</p>
+          <p class="journey-node__title">Sales Channels</p>
+          <p class="journey-node__caption">Website · Instagram · Exhibitions</p>
+          <div class="journey-node__detail">
+            <div class="journey-node__detail-inner">
+              <p class="journey-node__detail-text">Available through our website, Instagram shop, and curated exhibition pop-ups.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Node 8 -->
+        <div class="journey-node reveal" id="journey-node-8">
+          <div class="journey-node__circle">
+            <svg viewBox="0 0 24 24"><line x1="16.5" y1="9.4" x2="7.5" y2="4.21"/><path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>
+          </div>
+          <p class="journey-node__step">08</p>
+          <p class="journey-node__title">Courier Partner</p>
+          <p class="journey-node__caption">Shipped via Delhivery</p>
+          <div class="journey-node__detail">
+            <div class="journey-node__detail-inner">
+              <p class="journey-node__detail-text">Partnered with Delhivery for reliable pan-India delivery with tracking.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Node 9 — Final -->
+        <div class="journey-node journey-node--final reveal" id="journey-node-9">
+          <div class="journey-node__circle">
+            <svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+          </div>
+          <p class="journey-node__step">09</p>
+          <p class="journey-node__title">You</p>
+          <p class="journey-node__caption">Delivered across India</p>
+          <div class="journey-node__detail">
+            <div class="journey-node__detail-inner">
+              <p class="journey-node__detail-text">A piece of heritage arrives at your door — with the story of the hands that made it.</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════════════
+       SECTION 8 — IMPACT METRICS
+       ═══════════════════════════════════════════════════ -->
+  <section class="impact" id="impact">
+    <div class="container">
+
+      <div class="impact__label label reveal glass-panel" style="display:inline-block; margin-bottom: 48px;">By The Numbers</div>
+
+      <div class="impact__grid reveal glass-panel">
+        <div class="impact__metric reveal" id="metric-artisans">
+          <p class="impact__number" data-target="240">0</p>
+          <p class="impact__desc">Artisans across Uttarakhand</p>
+        </div>
+        <div class="impact__metric reveal" id="metric-crafts">
+          <p class="impact__number" data-target="12">0</p>
+          <p class="impact__desc">Craft traditions preserved</p>
+        </div>
+        <div class="impact__metric reveal" id="metric-districts">
+          <p class="impact__number" data-target="6">0</p>
+          <p class="impact__desc">Districts of Uttarakhand</p>
+        </div>
+        <div class="impact__metric reveal" id="metric-income">
+          <p class="impact__number" data-target="100" data-suffix="%">0</p>
+          <p class="impact__desc">Direct-to-artisan income</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════════════
+       SECTION 9 — JOURNAL PREVIEW
+       ═══════════════════════════════════════════════════ -->
+  <section class="journal" id="journal">
+    <div class="container">
+
+      <div class="journal__header reveal glass-panel">
+        <h2 class="journal__heading display">From the<br>Journal</h2>
+        <p class="journal__sub">Stories from the mountains.</p>
+      </div>
+
+      <div class="journal__grid reveal-stagger">
+
+        <!-- Article 1 -->
+        <article class="journal-card reveal glass-panel" style="transition-delay: 100ms">
+          <div class="journal-card__image-wrap">
+            <img class="journal-card__image" src="assets/journal-1.webp" alt="Ancient narrow alleyway in an Almora Himalayan village with stone houses and carved wooden windows">
+          </div>
+          <p class="journal-card__label">Craft Story · June 2025</p>
+          <h3 class="journal-card__title">The Last Copper Hammerers of Almora</h3>
+          <div class="journal-card__separator"></div>
+          <p class="journal-card__excerpt">A 400-year tradition survives in one family's courtyard in the high Kumaon hills.</p>
+          <a href="#" class="cta-link journal-card__cta" id="journal-cta-1">Read the Story →</a>
+        </article>
+
+        <!-- Article 2 -->
+        <article class="journal-card reveal" id="journal-article-2">
+          <div class="journal-card__image-wrap">
+            <img class="journal-card__image" src="assets/journal-2.webp" alt="High-altitude Himalayan meadow in Chamoli with snow-capped peaks in background">
+          </div>
+          <p class="journal-card__label">Artisan Interview · May 2025</p>
+          <h3 class="journal-card__title">Weaving the Himalayas: Pashmina's Quiet Survival</h3>
+          <div class="journal-card__separator"></div>
+          <p class="journal-card__excerpt">In Chamoli's remote valleys, a handful of weavers keep the pashmina tradition alive through winter and summer alike.</p>
+          <a href="#" class="cta-link journal-card__cta" id="journal-cta-2">Read the Story →</a>
+        </article>
+
+        <!-- Article 3 -->
+        <article class="journal-card reveal" id="journal-article-3">
+          <div class="journal-card__image-wrap">
+            <img class="journal-card__image" src="assets/journal-3.webp" alt="Artisans sitting together in a sun-drenched village courtyard sharing tea">
+          </div>
+          <p class="journal-card__label">Founder's Note · April 2025</p>
+          <h3 class="journal-card__title">Why We Built Dev Nagri</h3>
+          <div class="journal-card__separator"></div>
+          <p class="journal-card__excerpt">What began as a college project at IIT Roorkee became a mission to save Uttarakhand's craft heritage.</p>
+          <a href="#" class="cta-link journal-card__cta" id="journal-cta-3">Read the Story →</a>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════════════
+       SECTION 10 — FOOTER
+       ═══════════════════════════════════════════════════ -->
+  <footer class="footer glass-panel-dark" id="footer">
+
+    <!-- Likhai decorative top line -->
+    <div class="footer__decor" aria-hidden="true">
+      <div class="footer__decor-line"></div>
+      <div class="footer__decor-motif">
+        <svg viewBox="0 0 32 16">
+          <path d="M0 8h10"/>
+          <path d="M10 2l6 6-6 6"/>
+          <path d="M22 2l-6 6 6 6"/>
+          <path d="M22 8h10"/>
+        </svg>
+      </div>
+    </div>
+
+
+    <!-- Row 1 -->
+    <div class="footer__top">
+      <a href="/" class="footer__logo">Dev Nagri</a>
+      <p class="footer__tagline">Rooted in Uttarakhand. Made for the World.</p>
+      <div class="footer__social">
+        <!-- Instagram -->
+        <a href="#" class="footer__social-icon" aria-label="Follow on Instagram">
+          <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1.5"/></svg>
+        </a>
+        <!-- LinkedIn -->
+        <a href="#" class="footer__social-icon" aria-label="Follow on LinkedIn">
+          <svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-4 0v7h-4v-7a6 6 0 016-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+        </a>
+      </div>
+    </div>
+
+    <!-- Row 2 — Three columns -->
+    <div class="footer__columns">
+      <div>
+        <p class="footer__col-heading">Collections</p>
+        <a href="#" class="footer__col-link">Copper Craft</a>
+        <a href="#" class="footer__col-link">Himalayan Wool</a>
+        <a href="#" class="footer__col-link">Bamboo Ringaal</a>
+        <a href="#" class="footer__col-link">Wood Carving</a>
+        <a href="#" class="footer__col-link">Textile Heritage</a>
+      </div>
+      <div>
+        <p class="footer__col-heading">Discover</p>
+        <a href="#" class="footer__col-link">Our Artisans</a>
+        <a href="#" class="footer__col-link">The Journey</a>
+        <a href="#" class="footer__col-link">Journal</a>
+        <a href="#" class="footer__col-link">About Us</a>
+        <a href="#" class="footer__col-link">FAQ</a>
+      </div>
+      <div>
+        <p class="footer__col-heading">Contact</p>
+        <p class="footer__col-text">hello@devnagri.in</p>
+        <p class="footer__col-text">Roorkee, Uttarakhand</p>
+        <p class="footer__col-text" style="margin-top: 16px;">An Enactus IIT Roorkee<br>Initiative</p>
+      </div>
+    </div>
+
+    <!-- Bottom bar -->
+    <div class="footer__bottom">
+      <p class="footer__copyright">© 2025 Dev Nagri</p>
+      <p class="footer__brand">Handcrafted Heritage. Verified Origins.</p>
+    </div>
+
+  </footer>
+
+  <script src="gradient.js"></script>
+  <script src="script.js"></script>
+
+</body>
+</html>
