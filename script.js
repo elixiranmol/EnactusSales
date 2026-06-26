@@ -117,6 +117,96 @@
   }
 
 
+  /* ─── Interactive Gradient Background (Aipan-Mesh) ─── */
+  if (!prefersReducedMotion) {
+    const bgCanvas = document.getElementById('bg-canvas');
+    const bgOrbs = document.querySelectorAll('.bg-orb');
+    const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+
+    if (bgCanvas && bgOrbs.length > 0) {
+
+      /* ── Mouse tracking with lerp ── */
+      let mouseX = 0, mouseY = 0;
+      let targetX = 0, targetY = 0;
+      const lerpSpeed = 0.06;
+
+      if (!isTouchDevice) {
+        window.addEventListener('mousemove', (e) => {
+          targetX = (e.clientX - window.innerWidth / 2);
+          targetY = (e.clientY - window.innerHeight / 2);
+        }, { passive: true });
+      }
+
+      /* ── Scroll-aware fade class ── */
+      const SCROLL_FADE_THRESHOLD = window.innerHeight * 0.8;
+      function handleBgScroll() {
+        if (window.scrollY > SCROLL_FADE_THRESHOLD) {
+          bgCanvas.classList.add('bg-gradient-canvas--scrolled');
+        } else {
+          bgCanvas.classList.remove('bg-gradient-canvas--scrolled');
+        }
+      }
+      window.addEventListener('scroll', handleBgScroll, { passive: true });
+      handleBgScroll();
+
+      /* ── Animation loop ── */
+      const orbConfigs = [];
+
+      bgOrbs.forEach((orb, i) => {
+        const parallaxFactor = parseFloat(orb.dataset.parallax) || 0.03;
+        const driftFreqX = parseFloat(orb.dataset.driftX) || 0.0004;
+        const driftFreqY = parseFloat(orb.dataset.driftY) || 0.0005;
+        /* Each orb drifts in a different phase */
+        const phaseX = Math.random() * Math.PI * 2;
+        const phaseY = Math.random() * Math.PI * 2;
+        /* Drift amplitude in pixels */
+        const driftAmpX = 60 + Math.random() * 40;
+        const driftAmpY = 50 + Math.random() * 30;
+
+        orbConfigs.push({
+          el: orb,
+          parallaxFactor,
+          driftFreqX,
+          driftFreqY,
+          phaseX,
+          phaseY,
+          driftAmpX,
+          driftAmpY,
+        });
+      });
+
+      function animateBg(timestamp) {
+        /* Lerp mouse position for buttery movement */
+        mouseX += (targetX - mouseX) * lerpSpeed;
+        mouseY += (targetY - mouseY) * lerpSpeed;
+
+        /* Update each orb */
+        for (let i = 0; i < orbConfigs.length; i++) {
+          const c = orbConfigs[i];
+
+          /* Autonomous sinusoidal drift */
+          const driftX = Math.sin(timestamp * c.driftFreqX + c.phaseX) * c.driftAmpX;
+          const driftY = Math.cos(timestamp * c.driftFreqY + c.phaseY) * c.driftAmpY;
+
+          /* Mouse parallax offset */
+          const parallaxX = mouseX * c.parallaxFactor;
+          const parallaxY = mouseY * c.parallaxFactor;
+
+          /* Combine drift + parallax */
+          const tx = driftX + parallaxX;
+          const ty = driftY + parallaxY;
+
+          c.el.style.transform = `translate3d(${tx}px, ${ty}px, 0)`;
+        }
+
+        requestAnimationFrame(animateBg);
+      }
+
+      requestAnimationFrame(animateBg);
+    }
+  }
+
+
   /* ─── Magnetic Cursor Effect on CTA Buttons ─── */
   if (!prefersReducedMotion && window.innerWidth > 768) {
     const ctaButtons = document.querySelectorAll('.cta');
@@ -146,51 +236,56 @@
     {
       image: 'assets/artisan-kamla.webp',
       name: 'Kamla Devi',
-      location: 'Almora District · Uttarakhand',
-      craft: 'Aipan — Kumaoni Ritual Floor Art',
+      nameDeva: 'कमला देवी',
+      location: 'Syalde · Almora · कुमाऊँ',
+      craft: 'Aipan — Kumaoni Ritual Floor-Art',
       quote:
-        '\u201CMy grandmother painted these patterns before every festival. Now I paint them on objects that travel to homes I\u2019ll never see.\u201D',
+        '\u201CMy grandmother drew these patterns in geru on our courtyard before every festival. Now I draw them on objects that travel to homes I will never see \u2014 but the hand that made them, that goes with them.\u201D',
       village: 'Syalde, Almora',
       since: '1987',
-      ctaText: "Read Kamla\u2019s Story \u2192",
+      ctaText: 'कमला की कहानी पढ़ें · Read Kamla\u2019s Story \u2192',
     },
     {
       image: 'assets/artisan-thumbnail-2.webp',
       name: 'Geeta Rawat',
-      location: 'Chamoli District · Uttarakhand',
+      nameDeva: 'गीता रावत',
+      location: 'Gopeshwar · Chamoli · गढ़वाल',
       craft: 'Pashmina — Himalayan Wool Weaving',
       quote:
         '\u201CEach thread carries the cold of the mountains and the warmth of our hands. A shawl is not fabric \u2014 it is a winter\u2019s worth of patience.\u201D',
       village: 'Gopeshwar, Chamoli',
       since: '1995',
-      ctaText: "Read Geeta\u2019s Story \u2192",
+      ctaText: 'गीता की कहानी पढ़ें · Read Geeta\u2019s Story \u2192',
     },
     {
       image: 'assets/artisan-thumbnail-3.webp',
       name: 'Rajesh Bisht',
-      location: 'Tehri District · Uttarakhand',
+      nameDeva: 'राजेश बिष्ट',
+      location: 'New Tehri · Tehri · गढ़वाल',
       craft: 'Likhai — Traditional Wood Carving',
       quote:
         '\u201CMy father carved temple doors. I carve smaller things now, but the chisel remembers the old patterns.\u201D',
       village: 'New Tehri, Tehri',
       since: '2002',
-      ctaText: "Read Rajesh\u2019s Story \u2192",
+      ctaText: 'राजेश की कहानी पढ़ें · Read Rajesh\u2019s Story \u2192',
     },
     {
       image: 'assets/artisan-thumbnail-4.webp',
       name: 'Parvati Joshi',
-      location: 'Pithoragarh District · Uttarakhand',
+      nameDeva: 'पार्वती जोशी',
+      location: 'Munsiyari · Pithoragarh · कुमाऊँ',
       craft: 'Textile Heritage — Natural Dye Weaving',
       quote:
         '\u201CThe colours come from the earth around us \u2014 walnut bark, turmeric root, indigo leaves. Nothing is wasted.\u201D',
       village: 'Munsiyari, Pithoragarh',
       since: '1991',
-      ctaText: "Read Parvati\u2019s Story \u2192",
+      ctaText: 'पार्वती की कहानी पढ़ें · Read Parvati\u2019s Story \u2192',
     },
   ];
 
   const mainImage = document.getElementById('artisan-main-image');
   const artisanName = document.getElementById('artisan-name');
+  const artisanNameDeva = document.getElementById('artisan-name-deva');
   const artisanLocation = document.getElementById('artisan-location');
   const artisanCraft = document.getElementById('artisan-craft');
   const artisanQuote = document.getElementById('artisan-quote');
@@ -210,6 +305,7 @@
       const fadeTargets = [
         mainImage,
         artisanName,
+        artisanNameDeva,
         artisanLocation,
         artisanCraft,
         artisanQuote,
@@ -233,6 +329,7 @@
           mainImage.alt = data.name + ', artisan from Uttarakhand';
         }
         if (artisanName) artisanName.textContent = data.name;
+        if (artisanNameDeva) artisanNameDeva.textContent = data.nameDeva;
         if (artisanLocation) artisanLocation.textContent = data.location;
         if (artisanCraft) artisanCraft.textContent = data.craft;
         if (artisanQuote) artisanQuote.textContent = data.quote;
