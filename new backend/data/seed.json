@@ -1,0 +1,36 @@
+{
+  "domain_name": "Pahaadi Roots Store",
+  "seed_data": {
+    "store": {
+      "currencies": ["inr"]
+    },
+    "regions": [
+      {
+        "name": "India",
+        "currency_code": "inr",
+        "tax_rate": 18,
+        "payment_providers": ["manual"],
+        "fulfillment_providers": ["manual"],
+        "countries": ["in"]
+      }
+    ],
+    "shipping_options": [
+      {
+        "name": "Standard Shipping",
+        "region_name": "India",
+        "provider_id": "manual",
+        "data": {},
+        "price_type": "flat_rate",
+        "amount": 9900
+      },
+      {
+        "name": "Express Shipping",
+        "region_name": "India",
+        "provider_id": "manual",
+        "data": {},
+        "price_type": "flat_rate",
+        "amount": 19900
+      }
+    ]
+  }
+}
